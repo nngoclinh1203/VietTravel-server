@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const userRoute = require("./routes/user");
 const historicalSiteRoute = require("./routes/historicalSite");
-
+const commentRoute = require("./routes/comment");
 
 dotenv.config();
 
@@ -28,6 +28,7 @@ app.use(morgan("common"));
 //ROUTES
 app.use("/v1/historicalSite", historicalSiteRoute);
 app.use("/v1/user", userRoute);
+app.use("/v1/comment", commentRoute);
 
 app.listen(8000, () => {
     console.log("Server is running...");
