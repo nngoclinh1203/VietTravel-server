@@ -1,4 +1,4 @@
-const historicalSiteController = require("../controllers/historicalSiteController");
+const historicalSiteController = require("../controllers/historicalSite");
 
 const router = require("express").Router();
 
