@@ -1,77 +1,23 @@
 {
-  "name": "vietTravel-server",
+  "name": "viettravelbe",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js",
-    "serve": "node src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/index.js"
   },
-  "keywords": [
-    "hls-demo",
-    "hls-live-streaming",
-    "hls-stream",
-    "hls-server",
-    "hls-audio",
-    "hls-chunks-to-s3",
-    "mp3-to-hls-chunks",
-    "hls-node-js",
-    "hls-demo-nodejs",
-    "hls-example-nodejs"
-  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.23.0",
-    "@babel/core": "^7.23.2",
-    "@babel/node": "^7.22.19",
-    "@babel/preset-env": "^7.23.2",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.1.0"
   },
   "dependencies": {
-    "@sendgrid/mail": "^8.1.3",
-    "aws-sdk": "^2.1126.0",
-    "axios": "^1.6.1",
-    "bard-ai": "^1.5.4",
-    "basic-ftp": "^5.0.3",
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
-    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "express-validator": "^7.0.1",
-    "fix-esm": "^1.0.1",
-    "fs": "^0.0.1-security",
-    "fuse.js": "^7.0.0",
-    "http": "^0.0.1-security",
-    "jade": "^0.29.0",
-    "jsonwebtoken": "^9.0.0",
-    "module-alias": "^2.2.3",
-    "moment": "^2.29.4",
-    "mongoose": "^5.1.2",
-    "mysql": "^2.18.1",
-    "mysql2": "^3.0.0",
-    "node-crypt": "^1.2.0",
-    "node-id3": "^0.2.6",
-    "passport": "^0.6.0",
-    "passport-jwt": "^4.0.1",
-    "path": "^0.12.7",
-    "request": "^2.88.2",
-    "rimraf": "^5.0.5",
-    "sequelize": "^6.33.0",
-    "sequelize-cli": "^6.6.1",
-    "socket.io": "^4.7.2",
-    "ytdl-core": "^4.11.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nngoclinh1203/VietTravel-server"
-  },
-  "bugs": {
-    "url": "https://github.com/nngoclinh1203/VietTravel-server/issues"
-  },
-  "homepage": "https://github.com/nngoclinh1203/VietTravel-server#readme"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.1",
+    "morgan": "^1.10.0"
+  }
 }
