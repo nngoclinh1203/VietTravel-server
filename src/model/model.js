@@ -56,6 +56,9 @@ const usersSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    avatar: {
+        type: String  // Đường dẫn đến ảnh đại diện
+    },
     comments: [
         {
         type: mongoose.Schema.Types.ObjectId,
