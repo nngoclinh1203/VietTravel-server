@@ -1,7 +1,7 @@
 {
-  "name": "muzik-server",
+  "name": "vietTravel-server",
   "version": "1.0.0",
-  "description": "Server for Muzik Android App",
+  "description": "",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/server.js",
@@ -68,10 +68,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antoo05-11/Muzik-Server.git"
+    "url": "git+https://github.com/nngoclinh1203/VietTravel-server"
   },
   "bugs": {
-    "url": "https://github.com/antoo05-11/Muzik-Server/issues"
+    "url": "https://github.com/nngoclinh1203/VietTravel-server/issues"
   },
-  "homepage": "https://github.com/antoo05-11/Muzik-Server#readme"
+  "homepage": "https://github.com/nngoclinh1203/VietTravel-server#readme"
 }
