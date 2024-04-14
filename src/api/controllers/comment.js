@@ -1,4 +1,4 @@
-const { HistoricalSite, User, Comment } = require("../model/model");
+const { Comment } = require("../model/model");
 
 const commentController = {
     addComment: async (req, res) => {

@@ -1,4 +1,4 @@
-const { HistoricalSite, User, Comment } = require("../model/model");
+const User = require('../model/user');
 
 const userController = {
     addUser: async (req, res) => {

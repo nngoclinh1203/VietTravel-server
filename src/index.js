@@ -5,20 +5,18 @@ var bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const userRoute = require("./routes/user");
-const historicalSiteRoute = require("./routes/historicalSite");
-const commentRoute = require("./routes/comment");
+const userRoute = require("./api/routes/user");
+const historicalSiteRoute = require("./api/routes/historicalSite");
+const commentRoute = require("./api/routes/comment");
 
 dotenv.config();
 
-// Khởi tạo kết nối Mongoose
-mongoose.connect((process.env.MONGODB_URL))
-    .then(() => {
-        console.log('Connected to MongoDB');
-    })
-    .catch(error => {
-        console.error('Error connecting to MongoDB:', error);
-    });
+const PORT = process.env.PORT;
+const router = require("./api/routes/index");
+const db = require('./api/config/db');
+
+//Connect to db
+db.connect();
 
 
 app.use(bodyParser.json({limit:"50mb"}));
@@ -26,10 +24,17 @@ app.use(cors());
 app.use(morgan("common"));
 
 //ROUTES
-app.use("/v1/historicalSite", historicalSiteRoute);
-app.use("/v1/user", userRoute);
-app.use("/v1/comment", commentRoute);
+app.use("/api", router);
 
-app.listen(8000, () => {
-    console.log("Server is running...");
+app.use("/", (req, res) => {
+    res.status(200).json("Hello!");
+})
+
+// const db = require('../src/api/models')
+// app.use("/v1/historicalSite", historicalSiteRoute);
+// app.use("/v1/user", userRoute);
+// app.use("/v1/comment", commentRoute);
+
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
 });
