@@ -3,16 +3,17 @@ const userRouter = require('./user');
 const historicalSiteRouter = require('./historicalSite');
 const commentRouter = require('./comment');
 const authRouter = require('./auth');
+const { Router } = require('express');
 
-function route(app) {
-    app.use('/api/users', userRouter);
-    app.use('/api/historicalSites', historicalSiteRouter);
-    app.use('/api/comments', commentRouter);
-    app.use('/api/auth', authRouter);
-    app.use('/', (req, res) => {
-        res.status(404).json({ message: 'Resource not found' });
-    });
-    
-}
+const router = Router();
 
-module.exports = route;
+router.use('/users', userRouter);
+router.use('/historicalSites', historicalSiteRouter);
+router.use('/comments', commentRouter);
+router.use('/auth', authRouter);
+router.use('/', (req, res) => {
+    res.status(404).json({ message: 'Resource not found' });
+});
+
+
+module.exports = router;

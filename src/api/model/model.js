@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 // const historicalSitesSchema = new mongoose.Schema({
 //     name: {
@@ -67,30 +67,30 @@ const mongoose = require("mongoose");
 //     ]
 // })
 
-const commentsSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    },
-    historicalSite: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "HistoricalSite"
-    },
-    time: {
-        type: Date,
-        default: Date.now
-    },
-    content: {
-        type: String,
-        required: true
-    },
-    rate: {
-        type: Number
-    }
-});
+// const commentsSchema = new mongoose.Schema({
+//     user: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: "User"
+//     },
+//     historicalSite: {
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: "HistoricalSite"
+//     },
+//     time: {
+//         type: Date,
+//         default: Date.now
+//     },
+//     content: {
+//         type: String,
+//         required: true
+//     },
+//     rate: {
+//         type: Number
+//     }
+// });
 
 // let HistoricalSite = mongoose.model("HistoricalSite", historicalSitesSchema);
 // let User = mongoose.model("User", usersSchema);
-let Comment = mongoose.model("Comment", commentsSchema);
+// let Comment = mongoose.model("Comment", commentsSchema);
 
-module.exports = { Comment};
+// module.exports = { Comment};
