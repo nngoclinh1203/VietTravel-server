@@ -17,10 +17,19 @@ const UserSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        required: true
+        required: true,
+        enum: ['user', 'admin'] // Giá trị của `role` chỉ có thể là 'user' hoặc 'admin'
     },
     avatar: {
         type: String  // Đường dẫn đến ảnh đại diện
+    },
+    numOfVisitedSites: {
+        type: Number,
+        default: 0
+    },
+    numOfLikedSites: {
+        type: Number,
+        default: 0
     },
     comments: [
         {

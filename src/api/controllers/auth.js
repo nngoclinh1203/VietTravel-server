@@ -4,9 +4,9 @@ const bcrypt = require('bcrypt');
 
 exports.signup = async (req, res) => {
     try {
-        const { username, email, password, numberPhone } = req.body;
+        const { username, email, password, numberPhone, role } = req.body;
 
-        if (!username || !email || !password || !numberPhone)
+        if (!username || !email || !password || !numberPhone || !role)
             return res.status(400).json({ message: "All input is required!" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -15,7 +15,8 @@ exports.signup = async (req, res) => {
             username,
             email,
             numberPhone,
-            password: hashedPassword
+            password: hashedPassword,
+            role,
         });
 
         await user.save();
