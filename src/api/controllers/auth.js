@@ -2,6 +2,7 @@ const User = require('../model/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+//api/auth/signup
 exports.signup = async (req, res) => {
     try {
         const { username, email, password, numberPhone, role } = req.body;
@@ -26,6 +27,8 @@ exports.signup = async (req, res) => {
         res.status(500).json(err);
     }
 }
+
+//api/auth/login
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -53,6 +56,8 @@ exports.login = async (req, res) => {
         res.status(500).json(err);
     }
 }
+
+//api/auth/logout
 exports.logout = async (req, res) => {
     try {
         res.status(200).json({ message: "Logout successfully!" });

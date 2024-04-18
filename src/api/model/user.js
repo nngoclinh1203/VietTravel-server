@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
     username: {
         type: String,
         required: true
@@ -18,7 +22,7 @@ const UserSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true,
-        enum: ['user', 'admin'] // Giá trị của `role` chỉ có thể là 'user' hoặc 'admin'
+        enum: ['visitor', 'user', 'admin'] // Giá trị của `role` chỉ có thể là 'user' hoặc 'admin', 'visitor'
     },
     avatar: {
         type: String  // Đường dẫn đến ảnh đại diện

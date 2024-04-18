@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const historicalSitesSchema = new mongoose.Schema({
+    historySiteId: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true
