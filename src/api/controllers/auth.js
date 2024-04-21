@@ -1,6 +1,7 @@
 const User = require('../model/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
 
 //api/auth/signup
 exports.signup = async (req, res) => {
@@ -13,12 +14,15 @@ exports.signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         
         const user = new User({
+            userId: uuidv4(), 
             username,
             email,
             numberPhone,
             password: hashedPassword,
             role,
         });
+
+        console.log(user);
 
         await user.save();
         res.status(201).json({ message: "User created successfully!" });
