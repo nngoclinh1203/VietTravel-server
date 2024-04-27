@@ -9,23 +9,27 @@ const historicalSitesSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    address: {
-        type: String,
-        required: true
-    },
+    // address: {
+    //     type: String,
+    //     required: true
+    // },
     images: {
         type: [String]
     },
-    content: {
+    summary: {
         type: String,
         required: true
     },
-    coordinates: {
-        Longitude: {
+    description: {
+        type: String,
+        required: true
+    },
+    location: {
+        x: {
             type: Number,
             required: true
         },
-        Latitude: {
+        y: {
             type: Number,
             required: true
         }

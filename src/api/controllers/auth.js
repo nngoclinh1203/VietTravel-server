@@ -52,8 +52,19 @@ exports.login = async (req, res) => {
         // );
 
         res.status(200).json({
-            message: "Login successfully!",
-            // accessToken
+            // message: "Login successfully!",
+            user: {
+                userId: user.userId,
+                username: user.username,
+                email: user.email,
+                numberPhone: user.numberPhone,
+                role: user.role,
+                avatar: user.avatar,
+                numOfVisitedSites: user.numOfVisitedSites,
+                numOfLiked: user.numOfLiked,
+                comments: user.comments
+
+            },
         });
     }
     catch (err) {

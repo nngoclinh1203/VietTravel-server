@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
 
 const UserSchema = new mongoose.Schema({
     userId: {
@@ -32,7 +31,7 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    numOfLikedSites: {
+    numOfLiked: {
         type: Number,
         default: 0
     },
