@@ -28,7 +28,6 @@ exports.getHistoricalSites = async (req, res) => {
     }
 }
 
-
 //role:admin
 //api/historicalSites/add-historical-site
 exports.addHistoricalSite = async (req, res) => {
@@ -100,6 +99,54 @@ exports.deleteHistoricalSite = async (req, res) => {
         if (!historicalSite) return res.status(404).json({ message: "Historical Site not found!" });
 
         res.status(200).json({ message: "Historical Site deleted successfully!" });
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+
+//api/historicalSites/get-comments/:historySiteId
+exports.getCommentsHistoricalSite = async (req, res) => {
+    try {
+        const historicalSiteId = req.params.historicalSiteId;
+
+        const historicalSites = await HistoricalSite.findOne({ historySiteId: historicalSiteId });
+
+        if (!historicalSites) return res.status(404).json({ message: "Historical Site not found!" });
+
+        res.status(200).json(historicalSites.comments);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+
+}
+
+//api/historicalSites/add-comment/:historySiteId
+exports.addCommentHistoricalSite = async (req, res) => {
+    try {
+        const historicalSiteId = req.params.historicalSiteId;
+        const { userId, placeId, data } = req.body;
+
+        if (!userId || !placeId || !data) {
+            if (!userId) return res.status(400).json({ message: "User Id is required!" });
+            if (!placeId) return res.status(400).json({ message: "Place Id is required!" });
+            if (!data) return res.status(400).json({ message: "Data is required!" });
+        }
+
+        const comment = {
+            userId: userId,
+            historicalSiteId: placeId,
+            contend: data
+        }
+
+        const historicalSite = await HistoricalSite.findOne({ historySiteId: historicalSiteId });
+
+        if (!historicalSite) return res.status(404).json({ message: "Historical Site not found!" });
+
+        historicalSite.comments.push(comment);
+
+        await historicalSite.save();
+        res.status(201).json({ message: "Comment added successfully!" });
 
     } catch (err) {
         res.status(500).json(err);

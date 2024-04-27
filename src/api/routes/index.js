@@ -12,7 +12,7 @@ router.use('/historicalSites', historicalSiteRouter);
 router.use('/comments', commentRouter);
 router.use('/auth', authRouter);
 router.use('/', (req, res) => {
-    res.status(404).json({ message: 'Resource not found' });
+    res.status(404).json({ message: 'Router not found' });
 });
 
 
