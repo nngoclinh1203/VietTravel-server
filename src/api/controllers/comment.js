@@ -1,6 +1,6 @@
-const  Comment  = require("../model/comment");
+const Comment = require("../model/comment");
 const HistoricalSite = require('../model/historicalSites');
-const  User  = require("../model/user");
+const User = require("../model/user");
 const { v4: uuidv4 } = require('uuid');
 
 // const commentController = {
@@ -20,7 +20,7 @@ const { v4: uuidv4 } = require('uuid');
 exports.addComment = async (req, res) => {
     try {
         const { userId, placeId, data } = req.body;
-       
+
         if (!userId || !placeId || !data) {
             if (!userId) return res.status(400).json({ message: "User Id is required!" });
             if (!placeId) return res.status(400).json({ message: "Place Id is required!" });
@@ -41,12 +41,12 @@ exports.addComment = async (req, res) => {
 
         const user = await User.findOne({ userId: userId });
         if (!user) return res.status(404).json({ message: "User not found!" });
-        
+
 
         console.log(comment);
         console.log(historicalSite);
         console.log(user);
-       
+
         const newComment = new Comment(comment);
         const savedComment = await newComment.save();
 
@@ -72,15 +72,28 @@ exports.getCommentsHistoricalSite = async (req, res) => {
     try {
         const historicalSiteId = req.params.historySiteId;
 
-        console.log(historicalSiteId);
-
         const historicalSite = await HistoricalSite.findOne({ historySiteId: historicalSiteId });
         if (!historicalSite) return res.status(404).json({ message: "Historical Site not found!" });
 
         const comments = await Comment.find({ historicalSiteId: historicalSiteId });
         if (!comments) return res.status(404).json({ message: "Comments not found!" });
 
-        res.status(200).json(comments);
+        const newComments = await Promise.all(comments.map(async comment => {
+            const user = await User.findOne({ userId: comment.userId });
+            console.log(user.avatar);
+        
+            if (user) {
+                return {
+                    commentId: comment.commentId,
+                    content: comment.content,
+                    time: comment.time,
+                    avatar: user.avatar,
+                    username: user.username
+                };
+            } 
+        }));        
+
+        res.status(200).json(newComments);
 
     } catch (err) {
         console.error(err);
