@@ -24,7 +24,8 @@ const userController = {
     //GET A USER
     getAUser: async (req, res) => {
         try {
-            const user = await User.findById(req.params.id);
+            const userId = req.params.userId;
+            const user = await User.findOne({ userId: userId });
             res.status(200).json(user);
         } catch (err) {
             res.status(500).json(err);
@@ -34,7 +35,8 @@ const userController = {
     //UPDATE USER
     updateUser: async (req, res) => {
         try {
-            const user = await User.findById(req.params.id);
+            const userId = req.params.userId;
+            const user = await User.findOne({ userId: userId });
             await user.updateOne({ $set: req.body });
             res.status(200).json("Updated successfully!");
         } catch (err) {
