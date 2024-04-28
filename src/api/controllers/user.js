@@ -44,6 +44,17 @@ const userController = {
         }
     },
 
+    getUserComment: async (req,res) => {
+        try {
+            const userId = req.params.userId;
+            const user = await User.findOne({ userId: userId });
+            if(!user) return res.status(404).json({message: "User not found"});
+            res.status(200).json({username: user.username, avatar: user.avatar});
+        } catch(err) {
+            res.status(500).json(err);
+        }
+    }
+
     // DELETE USER
     // deleteUser: async (req, res) => {
     //     try {
