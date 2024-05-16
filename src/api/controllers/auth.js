@@ -35,11 +35,11 @@ exports.signup = async (req, res) => {
 //api/auth/login
 exports.login = async (req, res) => {
     try {
-        const { email, password } = req.body;
-        if (!email || !password)
+        const { username, password } = req.body;
+        if (!username || !password)
             return res.status(400).json({ message: "All input is required!" });
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
 
         if (!user) return res.status(404).json({ message: "User not found!" });
 

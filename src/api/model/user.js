@@ -35,6 +35,12 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    ratedPlaces: [
+        {
+            type: String,
+            ref: "HistoricalSite"
+        }
+    ],
     comments: [
         {
         type: String,

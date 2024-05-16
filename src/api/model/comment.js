@@ -23,6 +23,16 @@ const commentsSchema = new mongoose.Schema({
     },
     rate: {
         type: Number
+    },
+    peopleLiked: [
+        {
+            type: String,
+            ref: "User"
+        }
+    ],
+    numberOfLikes: {
+        type: Number,
+        default: 0
     }
 });
 
