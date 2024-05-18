@@ -194,4 +194,68 @@ exports.voteHistoricalSite = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 }
+
+exports.getAllComments = async (req, res) => {
+    try {
+        var allComments = await Comment.find();
+        var newAllComments = [];
+        for (const comment of allComments) {
+            const user = await User.findOne({ userId: comment.userId });
+            const historicalSite = await HistoricalSite.findOne({ historySiteId: comment.historicalSiteId });
+            if (user && historicalSite) {
+                const newComment = {
+                    commentId: comment.commentId,
+                    userAvatar: user.avatar,
+                    username: user.username,
+                    historicalSiteName: historicalSite.name,
+                    content: comment.content,
+                    time: formatDate(comment.time)
+                };
+
+                newAllComments.push(newComment);
+            }
+            // console.log(comment, newComment);
+        }
+
+        res.status(200).json(newAllComments);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}
+
+// Function to format date
+function formatDate(date) {
+    const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+    return new Date(date).toLocaleDateString('en-US', options);
+}
+
+//api/comments/delete-comment/:commentId
+exports.deleteComment = async (req, res) => {
+    try {
+        const commentId = req.params.commentId;
+
+        // const comment = await Comment.findOne({ commentId: commentId });
+        // if (!comment) return res.status(404).json({ message: "Comment not found!" });
+
+        // const historicalSite = await HistoricalSite.findOne({ historySiteId: comment.historicalSiteId });
+        // const user = await User.findOne({ userId: comment.userId });
+
+        await Comment.deleteOne({ commentId: commentId });
+
+        // if (historicalSite) {
+        //     historicalSite.comments = historicalSite.comments.filter(id => id !== commentId);
+        //     await historicalSite.save();
+        // }
+
+        // if (user) {
+        //     user.comments = user.comments.filter(id => id !== commentId);
+        //     await user.save();
+        // }
+
+        res.status(200).json({ message: "Comment deleted successfully!" });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
 // module.exports = commentController;
